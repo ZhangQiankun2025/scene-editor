@@ -10,22 +10,22 @@ export const staticRouter: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: CloudLayout,
-    redirect: '/page1',
+    redirect: '/model-editor',
     meta: {
       icon: HomeOutlined,
-      title: 'Page1',
+      title: 'Model Editor',
       isHideChildren: true,
       parent: 'home'
     },
     children: [
       {
-        path: '/page1',
-        name: 'page1',
+        path: '/model-editor',
+        name: 'model-editor',
         meta: {
-          title: 'page1',
+          title: 'Model Editor',
           parent: 'home'
         },
-        component: () => import('@/views/page1/index.vue')
+        component: () => import('@/views/model-editor/index.vue')
       }
     ]
   },
@@ -52,37 +52,37 @@ export const staticRouter: RouteRecordRaw[] = [
       }
     ]
   },
-  {
-    path: '/pages',
-    name: 'pages',
-    component: CloudLayout,
-    meta: {
-      icon: HomeOutlined,
-      title: 'Pages',
-      // isHideChildren: true,
-      parent: 'pages'
-    },
-    children: [
-      {
-        path: '/pages-1',
-        name: 'pages-1',
-        meta: {
-          title: 'Pages-1',
-          parent: 'pages-1'
-        },
-        component: () => import('@/views/pages/pages-1/index.vue')
-      },
-      {
-        path: '/pages-2',
-        name: 'pages-2',
-        meta: {
-          title: 'Pages-2',
-          parent: 'pages-2'
-        },
-        component: () => import('@/views/pages/pages-2/index.vue')
-      }
-    ]
-  }
+  // {
+  //   path: '/pages',
+  //   name: 'pages',
+  //   component: CloudLayout,
+  //   meta: {
+  //     icon: HomeOutlined,
+  //     title: 'Pages',
+  //     // isHideChildren: true,
+  //     parent: 'pages'
+  //   },
+  //   children: [
+  //     {
+  //       path: '/pages-1',
+  //       name: 'pages-1',
+  //       meta: {
+  //         title: 'Pages-1',
+  //         parent: 'pages-1'
+  //       },
+  //       component: () => import('@/views/pages/pages-1/index.vue')
+  //     },
+  //     {
+  //       path: '/pages-2',
+  //       name: 'pages-2',
+  //       meta: {
+  //         title: 'Pages-2',
+  //         parent: 'pages-2'
+  //       },
+  //       component: () => import('@/views/pages/pages-2/index.vue')
+  //     }
+  //   ]
+  // }
 ]
 
 /**
@@ -94,7 +94,7 @@ export const errorRouter = [
     name: '403',
     component: () => import('@/components/ErrorMessage/FourThree.vue'),
     meta: {
-      title: '403页面'
+      title: '403 Page'
     }
   },
   {
@@ -102,7 +102,7 @@ export const errorRouter = [
     name: '404',
     component: () => import('@/components/ErrorMessage/FourFour.vue'),
     meta: {
-      title: '404页面'
+      title: '404 Page'
     }
   },
   {
@@ -110,7 +110,7 @@ export const errorRouter = [
     name: '500',
     component: () => import('@/components/ErrorMessage/FiveHundred.vue'),
     meta: {
-      title: '500页面'
+      title: '500 Page'
     }
   },
   // 解决刷新页面，路由警告
