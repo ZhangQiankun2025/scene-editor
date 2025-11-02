@@ -1,5 +1,5 @@
 <template>
-  <page-wrapper title="page1" :content="description">
+  <page-wrapper title="Page1" :content="description">
     <a-table :columns="columns" :data-source="data">
       <template #headerCell="{ column }">
         <template v-if="column.key === 'name'">

@@ -13,7 +13,7 @@ export const staticRouter: RouteRecordRaw[] = [
     redirect: '/page1',
     meta: {
       icon: HomeOutlined,
-      title: 'page1',
+      title: 'Page1',
       isHideChildren: true,
       parent: 'home'
     },
@@ -31,12 +31,12 @@ export const staticRouter: RouteRecordRaw[] = [
   },
   {
     path: '/about',
-    name: 'about',
+    name: 'About',
     redirect: "/aboutDetail",
     component: CloudLayout,
     meta: {
       icon: HomeOutlined,
-      title: 'about',
+      title: 'About',
       isHideChildren: true,
       parent: 'about'
     },
@@ -45,7 +45,7 @@ export const staticRouter: RouteRecordRaw[] = [
         path: '/aboutDetail',
         name: 'aboutDetail',
         meta: {
-          title: 'about',
+          title: 'About',
           parent: 'about'
         },
         component: () => import('@/views/about/AboutView.vue')
@@ -58,7 +58,7 @@ export const staticRouter: RouteRecordRaw[] = [
     component: CloudLayout,
     meta: {
       icon: HomeOutlined,
-      title: 'pages',
+      title: 'Pages',
       // isHideChildren: true,
       parent: 'pages'
     },
@@ -67,7 +67,7 @@ export const staticRouter: RouteRecordRaw[] = [
         path: '/pages-1',
         name: 'pages-1',
         meta: {
-          title: 'pages-1',
+          title: 'Pages-1',
           parent: 'pages-1'
         },
         component: () => import('@/views/pages/pages-1/index.vue')
@@ -76,7 +76,7 @@ export const staticRouter: RouteRecordRaw[] = [
         path: '/pages-2',
         name: 'pages-2',
         meta: {
-          title: 'pages-2',
+          title: 'Pages-2',
           parent: 'pages-2'
         },
         component: () => import('@/views/pages/pages-2/index.vue')

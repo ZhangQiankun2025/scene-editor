@@ -4,7 +4,7 @@
   "private": true,
   "author": "rain9",
   "type": "module",
-  "description": "vue3-antd4-admin management system, 是一个基于 Vue3.0、Vite、TypeScript、Ant-Design-Vue 的后台解决方案，为后台管理系统提供现成的开箱解决方案及丰富的示例，提高开发效率。",
+  "description": "x-viewer is a WebGL based JS SDK, built on top of three.js. focuses on 2D and 3D graphics rendering technology and is committed to providing leading display and simulation solutions in the fields of industry, architecture, home decoration, and digital twins, driving the infinite possibilities of future visualization.",
   "scripts": {
     "start": "vite",
     "dev": "vite",

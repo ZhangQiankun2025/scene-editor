@@ -1,5 +1,5 @@
 <template>
-  <page-wrapper title="关于" :content="description">
+  <page-wrapper title="About" :content="description">
     <project-info class="enter-y" />
     <dependencies class="enter-y !mt-16px" />
     <dev-dependencies class="enter-y !mt-16px" />
