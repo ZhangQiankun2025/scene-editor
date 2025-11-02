@@ -7,14 +7,14 @@
             <div class="info-container" @click="goPlatformIndex">
               <img
                 class="logo"
-                src="https://static0.xesimg.com/productdata-fileupload/logo/future_cloud_logo1.png"
+                :src="logo"
                 alt="logo"
               />
-              <h1 class="titles">you-want</h1>
+              <h1 class="titles">Scene Editor</h1>
             </div>
           </div>
         </a-col>
-        <a-col :span="6">
+        <!-- <a-col :span="6">
           <ul class="menu">
             <li>
               <a-dropdown :trigger="['hover']">
@@ -25,14 +25,14 @@
                   <ul class="submenu">
                     <li>
                       <PoweroffOutlined style="margin-right: 5px" />
-                      <a href="/_auth/logout">退出登录</a>
+                      <a href="/_auth/logout">Logout</a>
                     </li>
                   </ul>
                 </template>
               </a-dropdown>
             </li>
           </ul>
-        </a-col>
+        </a-col> -->
       </a-row>
     </div>
   </a-layout-header>
@@ -42,6 +42,7 @@
 import { PoweroffOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/modules/user'
 import { UserOutlined } from '@ant-design/icons-vue'
+import logo from '@/assets/logo.svg'
 
 const router = useRouter()
 const userStore = useUserStore()

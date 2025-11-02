@@ -1,9 +1,8 @@
 <template>
   <a-layout-footer class="cloud-footer">
-    <p>————you-want 提供计算服务————</p>
+    <p>———— <a href="https://github.com/thingraph">x-viewer</a> empowered ————</p>
     <p>
-      Copyright © 2019 -
-      {{ new Date().getFullYear() }} you-want 出品
+      Copyright © 2023 - {{ new Date().getFullYear() }} <a href="https://www.thingraph.site/#/">thingraph</a>
     </p>
   </a-layout-footer>
 </template>
