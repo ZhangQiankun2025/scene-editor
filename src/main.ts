@@ -1,4 +1,6 @@
 import './assets/css/main.css'
+import './assets/css/iconfont/iconfont.css'
+import './assets/css/iconfont/iconfont2.css'
 
 import { createApp, type App } from 'vue'
 import pinia from '@/stores'
