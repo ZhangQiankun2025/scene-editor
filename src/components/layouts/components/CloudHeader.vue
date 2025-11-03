@@ -39,9 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { PoweroffOutlined } from '@ant-design/icons-vue'
+// import { PoweroffOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/stores/modules/user'
-import { UserOutlined } from '@ant-design/icons-vue'
+// import { UserOutlined } from '@ant-design/icons-vue'
 import logo from '@/assets/logo.svg'
 
 const router = useRouter()

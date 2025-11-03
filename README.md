@@ -22,6 +22,10 @@ Developed with vue3 + antd4 + vite4 + pnpm
 
 [Unocss](https://uno.antfu.me/)
 
+[ant design](https://ant.design/components/)
+
+[ant design icons](https://2fd.github.io/ant-design-icons/)
+
 
 ## Customize configuration
 
