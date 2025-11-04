@@ -1,5 +1,5 @@
 <template>
-  <a-card title="生产环境依赖" :bordered="false">
+  <a-card title="Production Dependencies" :bordered="false">
     <a-descriptions bordered size="small">
       <a-descriptions-item v-for="(value, key) in dependencies" :key="key" :label="key">
         {{ value }}

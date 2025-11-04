@@ -18,16 +18,16 @@
 </template>
 
 <script setup lang="ts">
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import enUS from 'ant-design-vue/es/locale/en_US'
 import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
+import 'dayjs/locale/en'
 
 const route = useRoute()
 const isKeepAlive = ref(route.meta.isKeepAlive)
 
-dayjs.locale('zh-cn')
+dayjs.locale('en')
 
-const locale = zhCN
+const locale = enUS
 
 type SizeType = 'small' | 'middle' | 'large'
 const componentSize = ref<SizeType>('middle')

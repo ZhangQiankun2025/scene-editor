@@ -25,12 +25,12 @@ function render(props: any = {}) {
   MicroApp.mount(c)
 }
 
-// 独立运行
+// Run standalone
 if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
   render({})
 } else {
-  // 作为子应用运行
-  console.info('vue3sub run')
+  // Run as qiankun micro-frontend
+  console.info('vue3sub running as micro-frontend')
   renderWithQiankun({
     mount(props) {
       console.info('vue3sub mount', props)

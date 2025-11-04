@@ -66,11 +66,11 @@ defineExpose({
           :class="isCollapse ? 'logo-animate2' : ''"
           style="font-size: 16px; font-weight: 700; color: #fff"
         >
-        vue3+antd4
+        Vue 3 + Ant Design Vue 4
         </span>
       </router-link>
     </div> -->
-    <!-- 菜单 -->
+    <!-- Menu -->
     <a-menu
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"

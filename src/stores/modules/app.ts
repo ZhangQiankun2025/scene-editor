@@ -3,43 +3,44 @@ import type { IAppState, ObjToKeyValArray } from '@/stores/interface'
 import { DEFAULT_PRIMARY } from '@/config'
 import piniaPersistConfig from '@/config/piniaPersist'
 
+// After changing default values, clear localStorage data
 export const useAppStore = defineStore({
   id: 'app-config',
-  // 修改默认值之后，需清除 localStorage 数据
+  // After modifying default values, clear localStorage data
   state: (): IAppState => ({
-    // 布局模式 (纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns)
+    // Layout mode (vertical | classic | transverse | columns)
     layout: 'vertical',
-    // 组件大小
+    // Component size
     assemblySize: 'default',
-    // 当前系统语言
+    // Current system language
     language: null,
-    // 当前页面是否全屏
+    // Whether the current page is fullscreen
     maximize: false,
-    // 主题颜色
+    // Theme primary color
     primary: DEFAULT_PRIMARY,
-    // 深色模式
+    // Dark mode
     isDark: false,
-    // 灰色模式
+    // Grey mode
     isGrey: false,
-    // 色弱模式
+    // Color-weak mode
     isWeak: false,
-    // 侧边栏反转
+    // Aside inverted
     asideInverted: false,
-    // 头部反转
+    // Header inverted
     headerInverted: false,
-    // 折叠菜单
+    // Collapsed menu
     isCollapse: false,
-    // 菜单手风琴
+    // Menu accordion behavior
     accordion: false,
-    // 面包屑导航
+    // Breadcrumb navigation
     breadcrumb: true,
-    // 面包屑导航图标
+    // Breadcrumb icons
     breadcrumbIcon: true,
-    // 标签页
+    // Tabs enabled
     tabs: true,
-    // 标签页图标
+    // Tab icons
     tabsIcon: true,
-    // 页脚
+    // Footer enabled
     footer: true
   }),
   getters: {},

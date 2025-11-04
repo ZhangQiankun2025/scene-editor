@@ -20,7 +20,7 @@ export const machinesPut = (params: any) => {
   return http.put(`/api/jobs`, params)
 }
 
-// 浏览器下载
+// Browser download
 export const logDownload = (params: any) => {
   const baseUrl = import.meta.env.VITE_ROUTER_BASE_URL || ''
   const url =

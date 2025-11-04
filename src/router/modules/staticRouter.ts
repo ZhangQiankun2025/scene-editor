@@ -3,7 +3,7 @@ import CloudLayout from '@/components/layouts/CloudLayout.vue'
 import { HomeOutlined } from '@ant-design/icons-vue'
 
 /**
- * staticRouter(静态路由)
+ * staticRouter (static routes)
  */
 export const staticRouter: RouteRecordRaw[] = [
   {
@@ -86,7 +86,7 @@ export const staticRouter: RouteRecordRaw[] = [
 ]
 
 /**
- * errorRouter(错误页面路由)
+ * errorRouter (error page routes)
  */
 export const errorRouter = [
   {
@@ -113,7 +113,7 @@ export const errorRouter = [
       title: '500 Page'
     }
   },
-  // 解决刷新页面，路由警告
+  // Resolve refresh routing warning
   {
     path: '/:pathMatch(.*)*',
     component: () => import('@/components/ErrorMessage/FourFour.vue')

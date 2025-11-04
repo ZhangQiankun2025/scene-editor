@@ -11,17 +11,23 @@ import { message } from 'ant-design-vue'
 import { useUserStore } from '@/stores/modules/user'
 import router from '@/router'
 
-// 请求响应参数（不包含data）
+/**
+ * Request response parameters (excluding data)
+ */
 export interface IResult {
   code: number
   msg: string
 }
-// 请求响应参数（包含data）
+/**
+ * Request response parameters (including data)
+ */
 export interface IResultData<T = any> extends IResult {
   data: T
 }
 
-// 请求配置
+/**
+ * Request enums and defaults
+ */
 export enum ResultEnum {
   SUCCESS = 0,
   ERROR = 500,
@@ -29,7 +35,6 @@ export enum ResultEnum {
   TIMEOUT = 30000,
   TYPE = 'success'
 }
-// 请求方法
 export enum RequestEnum {
   GET = 'GET',
   POST = 'POST',
@@ -38,41 +43,43 @@ export enum RequestEnum {
   DELETE = 'DELETE'
 }
 
-// 校验网络请求状态码
+/**
+ * Validate HTTP status codes and show user-friendly messages
+ */
 export const checkStatus = (status: number) => {
   switch (status) {
     case 400:
-      message.error('请求失败！请您稍后重试')
+      message.error('Bad Request. Please try again later.')
       break
     case 401:
-      message.error('登录失效！请您重新登录')
+      message.error('Unauthorized. Please log in again.')
       break
     case 403:
-      message.error('当前账号无权限访问！')
+      message.error('Forbidden. You do not have access.')
       break
     case 404:
-      message.error('你所访问的资源不存在！')
+      message.error('Resource not found.')
       break
     case 405:
-      message.error('请求方式错误！请您稍后重试')
+      message.error('Method Not Allowed. Please try again later.')
       break
     case 408:
-      message.error('请求超时！请您稍后重试')
+      message.error('Request timed out. Please try again later.')
       break
     case 500:
-      message.error('服务异常！')
+      message.error('Internal Server Error.')
       break
     case 502:
-      message.error('网关错误！')
+      message.error('Bad Gateway.')
       break
     case 503:
-      message.error('服务不可用！')
+      message.error('Service Unavailable.')
       break
     case 504:
-      message.error('网关超时！')
+      message.error('Gateway Timeout.')
       break
     default:
-      message.error('请求失败！')
+      message.error('Request failed.')
   }
 }
 
@@ -81,29 +88,32 @@ export interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 }
 
 const config = {
-  // 默认地址请求地址，可在 .env.** 文件中修改
+  // Default base URL, can be overridden in .env.* files
   baseURL: import.meta.env.VITE_API_URL as string,
-  // 设置超时时间
+  // Timeout
   timeout: ResultEnum.TIMEOUT as number,
-  // 跨域时候允许携带凭证
+  // Allow credentials for cross-site requests
   withCredentials: true
 }
 
+/**
+ * HTTP request wrapper with interceptors
+ */
 class RequestHttp {
   service: AxiosInstance
   public constructor(config: AxiosRequestConfig) {
-    // instantiation
+    // create axios instance
     this.service = axios.create(config)
 
     /**
-     * @description 请求拦截器
-     * 客户端发送请求 -> [请求拦截器] -> 服务器
-     * token校验(JWT) : 接受服务器返回的 token,存储到 pinia/本地储存当中
+     * Request interceptor
+     * Client -> [request interceptor] -> Server
+     * Token (JWT) validation: attach token from store to headers
      */
     this.service.interceptors.request.use(
       (config: CustomAxiosRequestConfig) => {
         const userStore = useUserStore()
-        // 当前请求不需要显示 loading，在 api 服务中通过指定的第三个参数: { noLoading: true } 来控制
+        // If this request should not show loading, set noLoading in request config
         config.noLoading || NProgress.start()
         if (config.headers && typeof config.headers.set === 'function') {
           config.headers.set('x-access-token', userStore.token)
@@ -116,27 +126,27 @@ class RequestHttp {
     )
 
     /**
-     * @description 响应拦截器
-     *  服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
+     * Response interceptor
+     * Server response -> [unified handling] -> Client
      */
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         const { data } = response
         const userStore = useUserStore()
         NProgress.done()
-        // 登陆失效
+        // Token expired / unauthorized
         if (data.code == ResultEnum.OVERDUE) {
           userStore.setToken('')
           router.replace(LOGIN_URL)
           message.error(data.msg)
           return Promise.reject(data)
         }
-        // 全局错误信息拦截（防止下载文件的时候返回数据流，没有 code 直接报错）
+        // Global error handling (avoid errors when downloading binary without code)
         else if (data.code && data.code !== ResultEnum.SUCCESS) {
           message.error(data.msg)
           return Promise.reject(data)
         }
-        // 成功请求（在页面上除非特殊情况，否则不用处理失败逻辑）
+        // Successful response
         else {
           return data
         }
@@ -144,12 +154,12 @@ class RequestHttp {
       async (error: AxiosError) => {
         const { response } = error
         NProgress.done()
-        // 请求超时 && 网络错误单独判断，没有 response
-        if (error.message.indexOf('timeout') !== -1) message.error('请求超时！请您稍后重试')
-        if (error.message.indexOf('Network Error') !== -1) message.error('网络错误！请您稍后重试')
-        // 根据服务器响应的错误状态码，做不同的处理
+        // Timeout & network errors may not have response
+        if (error.message.indexOf('timeout') !== -1) message.error('Request timed out. Please try again later.')
+        if (error.message.indexOf('Network Error') !== -1) message.error('Network error. Please check your connection.')
+        // Handle HTTP status codes returned by server
         if (response) checkStatus(response.status)
-        // 服务器结果都没有返回(可能服务器错误可能客户端断网)，断网处理:可以跳转到断网页面
+        // If offline, redirect to 500 error page
         if (!window.navigator.onLine) router.replace('/500')
         return Promise.reject(error)
       }
@@ -157,7 +167,7 @@ class RequestHttp {
   }
 
   /**
-   * @description 常用请求方法封装
+   * Common HTTP methods
    */
   get<T>(url: string, params?: object, _object = {}): Promise<IResultData<T>> {
     return this.service.get(url, { params, ..._object })

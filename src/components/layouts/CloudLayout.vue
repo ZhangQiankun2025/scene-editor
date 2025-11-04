@@ -14,11 +14,11 @@ const isCollapse = computed(() => AppStore.isCollapse)
     <!-- header -->
     <cloud-header />
     <a-layout class="aside-content" :class="isCollapse ? 'aside-close' : 'aside-open'">
-      <!-- aside 菜单 -->
+      <!-- aside menu -->
       <cloud-aside ref="cloudAsideRef" />
       <a-layout class="content-main">
         <a-layout-content>
-          <!-- 页面 -->
+          <!-- page content -->
           <router-view />
         </a-layout-content>
         <!-- footer -->
