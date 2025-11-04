@@ -1,6 +1,6 @@
-// cdn加载 monaco-editor，挂在到 window 上，使用 window.monaco 即可
+// Load monaco-editor from CDN and attach it to window; use window.monaco afterwards
 export function importMonaco() {
-  // Credit to https://github.com/matt-oconnell/vue-monaco-editor/blob/master/src/MonacoLoader.js
+  // Credit: https://github.com/matt-oconnell/vue-monaco-editor/blob/master/src/MonacoLoader.js
   let loaderPending = false
   const loaderCallbacks: any[] = []
 
@@ -24,7 +24,7 @@ export function importMonaco() {
 
   function ensureMonacoIsLoaded(srcPath: any): Promise<void> {
     return new Promise((resolve, reject) => {
-      if (window.monaco) {
+      if ((window as any).monaco) {
         resolve()
         return
       }
@@ -42,29 +42,29 @@ export function importMonaco() {
       loaderCallbacks.push({
         resolve: () => {
           if (loaderPending) {
-            window.require.config(config)
+            ;(window as any).require.config(config)
             loaderPending = false
           }
 
-          // Cross domain workaround - https://github.com/Microsoft/monaco-editor/blob/master/docs/integrate-amd-cross.md
-          window.MonacoEnvironment = {
+          // Cross-domain workaround
+          ;(window as any).MonacoEnvironment = {
             getWorkerUrl() {
               return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
                   self.MonacoEnvironment = {
                     baseUrl: '${srcPath}'
                   };
-                  importScripts('${srcPath}/vs/base/worker/workerMain.js');`)}`
+                  importScripts('${srcPath}/vs/base/worker/workerMain.js');`)}` // eslint-disable-line
             }
           }
 
-          window.require(['vs/editor/editor.main'], resolve)
+          ;(window as any).require(['vs/editor/editor.main'], resolve)
         },
         timeout,
         reject
       })
 
       if (!loaderPending) {
-        if (window.require) {
+        if ((window as any).require) {
           onAmdLoaderLoad()
         } else {
           const loaderScript = window.document.createElement('script')
@@ -84,7 +84,7 @@ export function importMonaco() {
       await ensureMonacoIsLoaded(
         'https://talcloud.oss-cn-beijing-internal.aliyuncs.com/k8s-fe/monaco-editor/min'
       )
-      console.warn('monaco-editor 加载完成')
+      console.warn('monaco-editor loaded')
     } catch (e) {
       console.error('Failure during loading monaco editor:', e)
     }

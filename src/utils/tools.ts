@@ -1,26 +1,26 @@
 import { message } from 'ant-design-vue'
 
 export function copyText(text: string) {
-  /* 创建一个textarea元素，并将要被复制的文本设置为其值 */
+  /* Create a textarea element and set its value to the text to be copied */
   const textarea = document.createElement('textarea')
   textarea.value = text
 
-  /* 将创建的textarea添加到HTML文档中 */
+  /* Append the textarea to the document body */
   document.body.appendChild(textarea)
 
-  /* 将新创建的textarea元素内容选中 */
+  /* Select the content of the created textarea element */
   textarea.select()
 
   try {
-    /* 调用浏览器内置的复制命令，将选定内容放入剪贴板*/
+    /* Execute the browser's copy command to place the selected content into the clipboard */
     const successful = document.execCommand('copy')
 
-    if (successful) message.success('文本已复制到剪贴板！')
-    else message.error('无法复制文本')
+    if (successful) message.success('Text copied to clipboard!')
+    else message.error('Unable to copy text')
   } catch (err) {
-    message.error('浏览器不支持！')
+    message.error('Browser does not support copy command!')
   }
 
-  /* 删除刚才添加到HTML文档中的textarea元素 */
+  /* Remove the textarea element that was added to the document */
   document.body.removeChild(textarea)
 }
