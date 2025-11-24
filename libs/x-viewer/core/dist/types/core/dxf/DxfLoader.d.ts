@@ -413,6 +413,9 @@ export declare class DxfLoader extends THREE.Loader {
     private getTextEncoding;
     private getTextMesh;
     private createTextMeshByText;
+    /**
+     * @param isAngleInRadian Angle/rotation unit fro dxf is radian, but is degree for dwg reading from libredwg!
+     */
     private transformTextMesh;
     private loadText;
     private loadAttDef;

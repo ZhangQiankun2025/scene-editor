@@ -3,6 +3,10 @@
  */
 export declare const ByLayer = "BYLAYER";
 export declare const ByBlock = "BYBLOCK";
+export declare const DefaultLineType = "CONTINUOUS";
+export declare const ColorIndexByBlock = 0;
+export declare const ColorIndexByLayer = 256;
+export declare const DefaultLayer = "0";
 /**
  * The render order for entities.
  * AutoCAD has well defined render order for each entity. But we have trouble

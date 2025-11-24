@@ -1,5 +1,3 @@
-/// <reference types="node" />
-import { Readable } from "stream";
 import IGeometry, { IEntity, IPoint } from "./entities/geomtry";
 import { IObject, IObjectParser } from "./objects/common";
 /**
@@ -302,6 +300,7 @@ export interface IDxf {
     blocks: Record<string, IBlock>;
     tables: ITables;
     objects: Record<string, IObject[]>;
+    isDwg?: boolean;
 }
 export default class DxfParser {
     private encoding?;
@@ -317,8 +316,8 @@ export default class DxfParser {
     registerEntityHandler(handlerType: new () => IGeometry): void;
     registerObjectHandler(handlerType: new () => IObjectParser): void;
     parseSync(source: string | ArrayBuffer): IDxf;
-    parseStream(stream: Readable): Promise<IDxf>;
     private _parse;
+    private _parseDwgEntity;
     private _parseDwg;
     /**
      * Splits a string to string array by line separator, "\r\n", "\r", "\n", etc.

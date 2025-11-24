@@ -1,21 +1,25 @@
 export declare class ColorUtils {
     static color2rgba(style: string): [number, number, number, number];
-    static rgba2Color(rgba: number[]): string;
     /**
-     * Converts color string in format "rgba(255, 255, 255, 1)" to rgba number array.
+     * Converts float color array in format "[0.0, 1.0, 0.0, 1.0]" to css color "rgba(0, 255, 0, 1.0)".
      */
-    static colorStr2Rgba(colorStr: string): number[];
+    static floatArray2CssColor(rgba: number[]): string;
+    /**
+     * Converts color string in format "rgba(255, 255, 255, 1)" to float number array.
+     */
+    static cssColor2FloatArray(colorStr: string): number[];
     /**
      * Converts rgb or rgba to hex number.
+     * E.g., [0.0, 1.0, 0.0] to 0x00ff00
      * @param rgba Color value is between 0 and 1.
      */
-    static rgb2Hex(rgba: number[]): number;
+    static floatArray2Hex(rgba: number[]): number;
     /**
-     * Maps a value between 0 and 1 to 0 and 255.
+     * Converts color value from float(0.0-1.0) to int (0-255)
      */
-    private static to255;
+    private static float2Int;
     /**
-     * Maps a value between 0 and 255 to 0 and 1.
+     * Converts color value from int (0-255) to float(0.0-1.0)
      */
-    private static to1;
+    private static int2Float;
 }

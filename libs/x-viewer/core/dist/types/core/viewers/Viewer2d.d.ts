@@ -369,6 +369,25 @@ export declare class Viewer2d extends BaseViewer {
      * @internal
      */
     resetLayerColor(layerName: string, modelId?: string): void;
+    /**
+     * Enables to hide visually small objects in order to improve performance.
+     */
+    enableHidingVisuallySmallObjects(enable: boolean): void;
+    /**
+     * If it enabled to hide visually small objects.
+     */
+    isHidingVisuallySmallObjectsEnabled(): boolean;
+    /**
+     * Gets a proper visible pixel size according to given object count.
+     * You can understand the size as pixel size, but it is not exactly pixel size.
+     * E.g., a line's length is 1000 in world coordinate. When zoom is 1, then it display as (let's say) 1000px.
+     * When we zoom out, so the zoom becomes 0.001, then the line displays as 1px. (Not exactly, but you'd better understand it this way).
+     * So, when there are less objects in scene, it's likely to see smaller object when it takes n(1, etc.) pixels in screen.
+     * And when there are many objects in scene, it's going to hide it when it takes more pixels (7, etc.).
+     * - < 10000 objects: 0.3
+     * - 10000 - 50000 objects: 0.5-3
+     * - > 50000 objects: 3
+     */
     private getVisiblePixelSize;
     private setLayoutHidableObjectArray;
     /**
@@ -377,6 +396,8 @@ export declare class Viewer2d extends BaseViewer {
     private updateRaycasterThreshold;
     /**
      * Updates hidable objects' visibility once camera.zoom changed.
+     * @param enableHideVisuallySmallObjects When enableHideVisuallySmallObjects is set to false, we may force
+     * all objects to be visible!
      */
     private updateHidableObjectsVisibility;
     /**

@@ -10,6 +10,7 @@ export * from "./Event";
 export * from "./ExportUtils";
 export * from "./FpsUtils";
 export * from "./GeometryUtils";
+export * from "./LodashUtils";
 export * from "./LogUtils";
 export * from "./MaterialUtils";
 export * from "./MathUtils";

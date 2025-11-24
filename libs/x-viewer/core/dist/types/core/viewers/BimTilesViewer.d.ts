@@ -72,6 +72,7 @@ export declare class BimTilesViewer extends BaseViewer {
      * Don't support external incoming modelId.
      */
     loadModel(modelCfg: ModelConfig, onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined): Promise<void>;
+    setObjectHighlight(object: THREE.Object3D): void;
     setObjectHighlightedByUserIds(modelId: number, userIds: number[], highlight: boolean): void;
     setObjectOpacityByUserIds(modelId: number, userIds: number[], opacity: number): void;
     setOtherObjectOpacityByUserIds(modelId: number, userIds: number[], opacity: number): void;

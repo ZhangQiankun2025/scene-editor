@@ -1,4 +1,4 @@
-import { DwgVertexEntity } from "@mlightcad/libredwg-web";
+import { DwgVertex2dEntity } from "@mlightcad/libredwg-web";
 import { DxfBaseReader, IGroup } from "../DxfBaseReader";
 import IGeometry, { IEntity, IPoint } from './geomtry';
 export interface IVertexEntity extends IEntity, IPoint {
@@ -18,5 +18,5 @@ export interface IVertexEntity extends IEntity, IPoint {
 export default class Vertex implements IGeometry {
     ForEntityName: "VERTEX";
     parseEntity(scanner: DxfBaseReader, curr: IGroup): IVertexEntity;
-    parseDwgEntity(entity: DwgVertexEntity, newEntity: IVertexEntity): void;
+    parseDwgEntity(entity: DwgVertex2dEntity, newEntity: IVertexEntity): void;
 }

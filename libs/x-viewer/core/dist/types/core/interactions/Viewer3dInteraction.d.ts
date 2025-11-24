@@ -1,7 +1,7 @@
 import { Object3D } from "three";
 import { Interaction } from "./Interaction";
+import { BaseViewer } from "../viewers/BaseViewer";
 import { Drawable } from "../../core/canvas/Drawable";
-import type { Viewer3d } from "../../core/viewers/Viewer3d";
 export declare class Viewer3dInteraction extends Interaction {
     private mouseMoved;
     private mouseButtonPressed;
@@ -11,7 +11,9 @@ export declare class Viewer3dInteraction extends Interaction {
     private currentIntersection;
     private isSelected;
     selectedObject?: Object3D | Drawable;
-    constructor(viewer: Viewer3d);
+    constructor(viewer: BaseViewer);
+    private onObjectSelected;
+    private onObjectDeselected;
     private isCloseToLastPosition;
     private isDoubleClick;
     private handle_pointerdown;

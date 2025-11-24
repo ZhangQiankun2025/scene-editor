@@ -4,11 +4,10 @@ import { IUploader } from "./IUploader";
  * @internal
  */
 export declare class LocalDxfUploader extends IUploader {
-    private viewer;
     private pdfWorker;
     onSuccess?: (event: any) => void;
     readonly defaultModelConfig: ModelConfig;
-    constructor(viewer: Viewer2d, elementId?: string);
+    constructor(viewer: Viewer2d, elementId?: string, formats?: string[]);
     setPdfWorker(pdfWorker: string): void;
     protected formats(): string[];
     protected uploadFiles(files: FileList): void;

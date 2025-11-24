@@ -87,6 +87,8 @@ export declare abstract class BaseViewer<BaseViewerEvents extends ViewerEvents =
      * A derived class may need to clean up selected object if any.
      */
     abstract set enableSelection(enable: boolean);
+    abstract setObjectHighlight(object: THREE.Object3D): void;
+    abstract clearHighlight(): void;
     getRaycaster(): THREE.Raycaster;
     getPickManager(): PickManager;
     getViewerConfig(): BaseViewerConfig;

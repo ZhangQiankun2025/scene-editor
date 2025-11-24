@@ -40,6 +40,8 @@ export declare class OverviewMapViewer extends BaseViewer<Record<OverviewMapPlug
     getImageBySrc(src: string): Promise<HTMLImageElement>;
     pickPosition(e: EventInfo): THREE.Vector3 | undefined;
     is3d(): boolean;
+    setObjectHighlight(object: THREE.Object3D): void;
+    clearHighlight(): void;
     /**
      * Updates raycaster threshold to a proper value, so user can easily pick points and lines
      */
